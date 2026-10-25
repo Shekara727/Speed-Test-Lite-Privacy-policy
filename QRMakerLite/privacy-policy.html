@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — QR Maker Lite | SK Studio</title>
+    <style>
+        :root {
+            --bg-deep: #050706;
+            --bg-surface: #0C100E;
+            --bg-card: #111714;
+            --bg-card-hover: #151D19;
+            --border-subtle: #1F2923;
+            --border-accent: rgba(185, 246, 202, 0.45);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B4C0B8;
+            --text-muted: #7E8C83;
+            --accent: #B9F6CA;
+            --accent-strong: #14A83B;
+            --accent-glow: rgba(185, 246, 202, 0.14);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image:
+                radial-gradient(circle at 15% 10%, rgba(20, 168, 59, 0.10) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(185, 246, 202, 0.07) 0%, transparent 45%);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            padding: 28px 16px 64px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes laserSweep {
+            0% {
+                top: 8px;
+                opacity: 0.45;
+            }
+            50% {
+                top: 42px;
+                opacity: 1;
+            }
+            100% {
+                top: 8px;
+                opacity: 0.45;
+            }
+        }
+
+        @keyframes pulseDot {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(185, 246, 202, 0.7);
+            }
+            50% {
+                transform: scale(1.12);
+                box-shadow: 0 0 0 8px rgba(185, 246, 202, 0);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: rgba(185, 246, 202, 0.25);
+            }
+            50% {
+                border-color: rgba(185, 246, 202, 0.65);
+            }
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Hero Header Card */
+        .hero-card {
+            background: linear-gradient(145deg, #101613 0%, #0A0E0C 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 32px 28px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        /* Animated Mini QR Scanner Icon */
+        .qr-icon-box {
+            width: 56px;
+            height: 56px;
+            background-color: #070A08;
+            border: 1.5px solid var(--border-accent);
+            border-radius: 14px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 14px rgba(185, 246, 202, 0.08);
+        }
+
+        .qr-grid {
+            width: 30px;
+            height: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+
+        .qr-cell {
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .qr-cell.hollow {
+            background-color: transparent;
+            border: 1.5px solid var(--accent);
+        }
+
+        .qr-laser {
+            position: absolute;
+            left: 6px;
+            right: 6px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            box-shadow: 0 0 8px var(--accent);
+            animation: laserSweep 2.6s ease-in-out infinite;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .app-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .lite-badge {
+            background-color: var(--accent-strong);
+            color: #FFFFFF;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .studio-subtitle {
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background-color: rgba(185, 246, 202, 0.08);
+            border: 1px solid var(--border-accent);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            animation: borderGlow 3.2s ease-in-out infinite;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            animation: pulseDot 2s infinite;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-meta span strong {
+            color: var(--text-secondary);
+        }
+
+        /* Quick Trust Highlights Grid */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+            gap: 12px;
+            margin-bottom: 22px;
+            animation: fadeSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+        }
+
+        .highlight-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 16px;
+            transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-accent);
+            background-color: var(--bg-card-hover);
+        }
+
+        .highlight-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .highlight-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .highlight-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* Quick Navigation Bar */
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 10px 12px;
+            margin-bottom: 22px;
+            position: sticky;
+            top: 12px;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+        }
+
+        .nav-chip {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background-color: transparent;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-chip:hover,
+        .nav-chip:focus {
+            color: #061A0B;
+            background-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        /* Policy Section Cards */
+        .policy-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 16px;
+            transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            animation: fadeSlideUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+        }
+
+        .policy-section:hover {
+            border-color: rgba(185, 246, 202, 0.32);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-num {
+            background-color: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.14rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+        }
+
+        ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 7px;
+            height: 7px;
+            border-radius: 2px;
+            background-color: var(--accent);
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        code {
+            background-color: #18221D;
+            color: var(--accent);
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        /* Permission Table */
+        .perm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.88rem;
+        }
+
+        .perm-table th,
+        .perm-table td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .perm-table th {
+            color: var(--accent);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background-color: rgba(185, 246, 202, 0.04);
+        }
+
+        .perm-table td {
+            color: var(--text-secondary);
+        }
+
+        /* Contact Box */
+        .contact-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            background-color: #0D1611;
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 14px;
+        }
+
+        .btn-action {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #061A0B;
+            font-weight: 700;
+            font-size: 0.86rem;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 9px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.18s ease, opacity 0.18s ease;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            opacity: 0.92;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.84rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero-card {
+                padding: 22px 18px;
+            }
+            .policy-section {
+                padding: 20px 18px;
+            }
+            .app-title {
+                font-size: 1.4rem;
+            }
+            .perm-table th,
+            .perm-table td {
+                padding: 10px 8px;
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Hero Banner -->
+        <header class="hero-card">
+            <div class="hero-top">
+                <div class="brand-group">
+                    <div class="qr-icon-box" aria-hidden="true">
+                        <div class="qr-grid">
+                            <span class="qr-cell"></span>
+                            <span class="qr-cell hollow"></span>
+                            <span class="qr-cell"></span>
+                            <span class="qr-cell hollow"></span>
+                            <span class="qr-cell"></span>
+                            <span class="qr-cell hollow"></span>
+                            <span class="qr-cell"></span>
+                            <span class="qr-cell"></span>
+                            <span class="qr-cell hollow"></span>
+                        </div>
+                        <div class="qr-laser"></div>
+                    </div>
+                    <div>
+                        <div class="title-row">
+                            <h1 class="app-title">QR Maker Lite</h1>
+                            <span class="lite-badge">Privacy Policy</span>
+                        </div>
+                        <div class="studio-subtitle">SK STUDIO</div>
+                    </div>
+                </div>
+                <div class="status-pill">
+                    <span class="pulse-dot"></span>
+                    100% Offline &amp; Zero Data Collection
+                </div>
+            </div>
+            <div class="hero-meta">
+                <span><strong>Application Name:</strong> QR Maker Lite</span>
+                <span><strong>Package ID:</strong> <code>com.qrmakerlite</code></span>
+                <span><strong>Developer:</strong> SK Studio</span>
+                <span><strong>Effective Date:</strong> October 25, 2026</span>
+            </div>
+        </header>
+
+        <!-- Key Privacy Guarantees -->
+        <section class="highlights-grid" aria-label="Privacy Highlights">
+            <div class="highlight-box">
+                <div class="highlight-tag">Network Access</div>
+                <div class="highlight-title">No Internet Permission</div>
+                <div class="highlight-desc">Does not declare <code>INTERNET</code> permission. Data never leaves your phone.</div>
+            </div>
+            <div class="highlight-box">
+                <div class="highlight-tag">User Privacy</div>
+                <div class="highlight-title">Zero Data Collected</div>
+                <div class="highlight-desc">No personal info, no accounts, no analytics, and no scan history stored.</div>
+            </div>
+            <div class="highlight-box">
+                <div class="highlight-tag">Camera Usage</div>
+                <div class="highlight-title">On-Device Only</div>
+                <div class="highlight-desc">Camera frames decode QR codes in RAM and are never saved or uploaded.</div>
+            </div>
+            <div class="highlight-box">
+                <div class="highlight-tag">Third-Party SDKs</div>
+                <div class="highlight-title">No Ads or Trackers</div>
+                <div class="highlight-desc">Built with 100% native Android APIs. Zero advertising or tracking SDKs.</div>
+            </div>
+        </section>
+
+        <!-- Sticky Section Navigation -->
+        <nav class="quick-nav" aria-label="Policy Sections">
+            <a class="nav-chip" href="#scope">1. Scope</a>
+            <a class="nav-chip" href="#data">2. Data Collection</a>
+            <a class="nav-chip" href="#permissions">3. Permissions</a>
+            <a class="nav-chip" href="#links">4. Website Links</a>
+            <a class="nav-chip" href="#sharing">5. Third-Party Sharing</a>
+            <a class="nav-chip" href="#retention">6. Data Retention</a>
+            <a class="nav-chip" href="#children">7. Children</a>
+            <a class="nav-chip" href="#contact">8. Contact</a>
+        </nav>
+
+        <!-- Section 1 -->
+        <section id="scope" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">01</span>
+                <h2>Scope of This Privacy Policy</h2>
+            </div>
+            <p>
+                This Privacy Policy applies specifically to the <strong>QR Maker Lite</strong> Android mobile application (package identifier <code>com.qrmakerlite</code>) developed and published by <strong>SK Studio</strong>. It discloses how our application handles user and device data in strict compliance with Google Play User Data policies.
+            </p>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="data" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">02</span>
+                <h2>Information Collection and Use</h2>
+            </div>
+            <p>
+                <strong>QR Maker Lite does not collect, store, transmit, or process any personal or sensitive user data on external servers.</strong> All operations happen locally on your Android device:
+            </p>
+            <ul>
+                <li><strong>No Personal Identifiers:</strong> We never ask for or access your name, email address, phone number, contacts, precise location, or device identifiers.</li>
+                <li><strong>Offline QR Generation (Text, Website URLs, Wi-Fi Credentials):</strong> When you generate a QR code for plain text, a website link, or a Wi-Fi network (SSID, password, and encryption type), the QR bitmap is computed strictly inside your device's volatile memory (RAM). Wi-Fi passwords and text inputs are never logged, stored in any database, or transmitted anywhere.</li>
+                <li><strong>Offline QR Scanning (Camera &amp; Uploaded Phone Images):</strong> When you scan a physical QR code or select a saved QR image from your device, the optical decoding runs 100% offline on your phone.</li>
+            </ul>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="permissions" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <h2>Device Permissions and Sensitive APIs</h2>
+            </div>
+            <p>
+                QR Maker Lite adheres to the principle of least privilege and requests only the single hardware permission needed for live QR scanning:
+            </p>
+            <table class="perm-table">
+                <thead>
+                    <tr>
+                        <th>Permission / API</th>
+                        <th>Purpose &amp; Data Handling</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>android.permission.CAMERA</code></td>
+                        <td>Requested at runtime only when you open the <strong>Scan QR</strong> tab. Live camera frames are analyzed in temporary memory to detect QR codes and are immediately discarded. No photos or videos are recorded or saved.</td>
+                    </tr>
+                    <tr>
+                        <td>Storage Access Framework (<code>ACTION_OPEN_DOCUMENT</code> / <code>ACTION_CREATE_DOCUMENT</code>)</td>
+                        <td>Used without requesting broad storage permissions. Allows you to explicitly pick a single QR image file to decode or choose a destination folder to save a generated PNG.</td>
+                    </tr>
+                    <tr>
+                        <td>Native Sharesheet (<code>QrShareProvider</code>)</td>
+                        <td>When you tap <strong>Share QR</strong>, the generated PNG is written to a temporary app-private cache path (<code>cacheDir/shared_qr/qr-code.png</code>) with temporary read-only URI access for your chosen sharing app.</td>
+                    </tr>
+                    <tr>
+                        <td><code>android.permission.INTERNET</code></td>
+                        <td><strong>Not requested.</strong> The app has zero network capability and cannot connect to the internet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="links" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">04</span>
+                <h2>External Website Links &amp; Safe Link Preview</h2>
+            </div>
+            <p>
+                When a scanned QR code contains an <code>http://</code> or <code>https://</code> URL, QR Maker Lite displays the full URL and highlights the destination domain host in a preview pop-up first. The application does not contain an embedded WebView and never opens websites automatically.
+            </p>
+            <p>
+                A website is launched only when you explicitly tap <strong>Open in Browser</strong>, which hands the URL to your default external web browser via a standard Android <code>ACTION_VIEW</code> intent. Once opened in your external browser, that website's own privacy policy governs your visit.
+            </p>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="sharing" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">05</span>
+                <h2>Data Sharing and Third-Party Parties</h2>
+            </div>
+            <p>
+                <strong>We do not share, sell, transfer, or disclose any user or device data with any third party under any circumstances.</strong>
+            </p>
+            <ul>
+                <li><strong>Zero Third-Party Libraries:</strong> Built exclusively with standard Android OS APIs.</li>
+                <li><strong>Zero Advertising:</strong> Contains no banner ads, interstitials, or Advertising ID access.</li>
+                <li><strong>Zero Analytics or Telemetry:</strong> Contains no analytics SDKs, behavioral trackers, or remote crash reporters.</li>
+            </ul>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="retention" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">06</span>
+                <h2>Data Retention and Deletion Policy</h2>
+            </div>
+            <p>
+                Because QR Maker Lite does not collect or store personal data or maintain a scan/generation history database, there is no stored user data on our servers to retain or delete. Temporary in-memory QR previews and scan results are erased immediately when you tap <strong>Clear</strong>, tap <strong>Scan Again</strong>, or close the app. Any PNG images you explicitly save to your phone remain under your full control and can be deleted at any time from your device storage.
+            </p>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="children" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">07</span>
+                <h2>Children's Privacy &amp; Policy Updates</h2>
+            </div>
+            <p>
+                QR Maker Lite is a general-audience utility tool and does not collect personal information from anyone, including children under the age of 13. If we update this Privacy Policy in the future, we will publish the updated version on this page and revise the Effective Date above.
+            </p>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="contact" class="policy-section">
+            <div class="section-header">
+                <span class="section-num">08</span>
+                <h2>Developer Contact Information</h2>
+            </div>
+            <p>
+                If you have any questions about this Privacy Policy or how <strong>QR Maker Lite</strong> handles user privacy, please contact <strong>SK Studio</strong>:
+            </p>
+            <div class="contact-card">
+                <div>
+                    <div><strong>Publisher:</strong> SK Studio — QR Maker Lite (<code>com.qrmakerlite</code>)</div>
+                    <div><strong>Support Email:</strong> <code id="dev-email">shekara727@gmail.com</code></div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button type="button" class="btn-action" id="copy-email-btn" onclick="navigator.clipboard.writeText('shekara727@gmail.com').then(function(){var b=document.getElementById('copy-email-btn');b.textContent='Email Copied';setTimeout(function(){b.textContent='Copy Email';},1800);});">Copy Email</button>
+                    <a class="btn-action" href="mailto:shekara727@gmail.com?subject=QR%20Maker%20Lite%20Privacy%20Inquiry">Send Email</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 SK Studio. All rights reserved. — QR Maker Lite (<code>com.qrmakerlite</code>)
+        </footer>
+    </div>
+</body>
+</html>
