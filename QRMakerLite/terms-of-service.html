@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — QR Maker Lite | SK Studio</title>
+    <style>
+        :root {
+            --bg-deep: #050706;
+            --bg-surface: #0C100E;
+            --bg-card: #111714;
+            --bg-card-hover: #151D19;
+            --border-subtle: #1F2923;
+            --border-accent: rgba(185, 246, 202, 0.45);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B4C0B8;
+            --text-muted: #7E8C83;
+            --accent: #B9F6CA;
+            --accent-strong: #14A83B;
+            --accent-glow: rgba(185, 246, 202, 0.14);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image:
+                radial-gradient(circle at 15% 10%, rgba(20, 168, 59, 0.10) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(185, 246, 202, 0.07) 0%, transparent 45%);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            padding: 28px 16px 64px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .hero-card {
+            background: linear-gradient(145deg, #101613 0%, #0A0E0C 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 32px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .app-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .lite-badge {
+            background-color: var(--accent-strong);
+            color: #FFFFFF;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .studio-subtitle {
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-meta span strong {
+            color: var(--text-secondary);
+        }
+
+        .policy-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 16px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-num {
+            background-color: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.14rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+        }
+
+        ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 7px;
+            height: 7px;
+            border-radius: 2px;
+            background-color: var(--accent);
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        code {
+            background-color: #18221D;
+            color: var(--accent);
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            background-color: #0D1611;
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 14px;
+        }
+
+        .btn-action {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #061A0B;
+            font-weight: 700;
+            font-size: 0.86rem;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 9px;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.84rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="hero-card">
+            <div class="hero-top">
+                <div>
+                    <div class="title-row">
+                        <h1 class="app-title">QR Maker Lite</h1>
+                        <span class="lite-badge">Terms of Service</span>
+                    </div>
+                    <div class="studio-subtitle">SK STUDIO</div>
+                </div>
+            </div>
+            <div class="hero-meta">
+                <span><strong>Application Name:</strong> QR Maker Lite</span>
+                <span><strong>Package Identifier:</strong> <code>com.qrmakerlite</code></span>
+                <span><strong>Publisher:</strong> SK Studio</span>
+                <span><strong>Support Email:</strong> <code>shekara727@gmail.com</code></span>
+                <span><strong>Effective Date:</strong> November 7, 2026</span>
+            </div>
+        </header>
+
+        <section class="policy-section">
+            <div class="section-header">
+                <span class="section-num">01</span>
+                <h2>Acceptance of Terms</h2>
+            </div>
+            <p>
+                By downloading, installing, or using the <strong>QR Maker Lite</strong> mobile application (package identifier <code>com.qrmakerlite</code>) published by <strong>SK Studio</strong> ("we", "our", or "us"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please discontinue use of the application.
+            </p>
+        </section>
+
+        <section class="policy-section">
+            <div class="section-header">
+                <span class="section-num">02</span>
+                <h2>License and Permitted Use</h2>
+            </div>
+            <p>
+                SK Studio grants you a personal, revocable, non-exclusive, non-transferable license to use QR Maker Lite on Android devices that you own or control for lawful QR code generation and scanning purposes:
+            </p>
+            <ul>
+                <li><strong>QR Code Generation:</strong> You may generate ISO/IEC 18004 QR codes for text, website URLs, and Wi-Fi configurations, and export them to your device Gallery or file storage.</li>
+                <li><strong>QR Code Scanning:</strong> You may scan QR codes using your device camera or select QR images from your device via the Android Photo Picker.</li>
+                <li><strong>Prohibited Conduct:</strong> You agree not to use QR Maker Lite to generate or distribute malicious, fraudulent, phishing, or unlawful QR codes, or to reverse-engineer or tamper with the application binary.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <h2>External Links, Phone Calls, and UPI Payment Intents</h2>
+            </div>
+            <p>
+                QR Maker Lite decodes QR payloads locally and presents a confirmation prompt before opening external websites (<code>http://</code> / <code>https://</code>), phone dialers (<code>tel:</code>), or UPI payment applications (<code>upi://pay</code>). You are solely responsible for verifying the destination website, phone number, or UPI recipient before proceeding. SK Studio is not a party to any third-party website transaction, call, or UPI payment.
+            </p>
+        </section>
+
+        <section class="policy-section">
+            <div class="section-header">
+                <span class="section-num">04</span>
+                <h2>Advertisements</h2>
+            </div>
+            <p>
+                QR Maker Lite is provided free of charge and is supported by advertisements (including a bottom Banner Ad and full-screen Interstitial Ads served via Google AdMob). By using the application, you acknowledge that advertisements will be displayed during application usage.
+            </p>
+        </section>
+
+        <section class="policy-section">
+            <div class="section-header">
+                <span class="section-num">05</span>
+                <h2>Disclaimer of Warranties and Limitation of Liability</h2>
+            </div>
+            <p>
+                QR Maker Lite is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied. To the fullest extent permitted by applicable law, SK Studio shall not be liable for any indirect, incidental, or consequential damages arising from your use of the application or any third-party links or payment codes scanned using the application.
+            </p>
+        </section>
+
+        <section class="policy-section">
+            <div class="section-header">
+                <span class="section-num">06</span>
+                <h2>Contact Information</h2>
+            </div>
+            <p>
+                For any questions regarding these Terms of Service, please contact SK Studio:
+            </p>
+            <div class="contact-card">
+                <div>
+                    <div><strong>Publisher:</strong> SK Studio — QR Maker Lite (<code>com.qrmakerlite</code>)</div>
+                    <div><strong>Email:</strong> <code>shekara727@gmail.com</code></div>
+                </div>
+                <div>
+                    <a class="btn-action" href="mailto:shekara727@gmail.com?subject=QR%20Maker%20Lite%20Terms%20Inquiry">Contact Support</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 SK Studio. All rights reserved. — QR Maker Lite (<code>com.qrmakerlite</code>)
+        </footer>
+    </div>
+</body>
+</html>
