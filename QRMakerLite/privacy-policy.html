@@ -543,7 +543,7 @@
                 </div>
                 <div class="status-pill">
                     <span class="pulse-dot"></span>
-                    Google Play User Data Compliant
+                    Zero Personal Data Collected
                 </div>
             </div>
             <div class="hero-meta">
@@ -551,16 +551,21 @@
                 <span><strong>Package Identifier:</strong> <code>com.qrmakerlite</code></span>
                 <span><strong>Publisher:</strong> SK Studio</span>
                 <span><strong>Support Email:</strong> <code>shekara727@gmail.com</code></span>
-                <span><strong>Effective Date:</strong> October 30, 2026</span>
+                <span><strong>Effective Date:</strong> November 9, 2026</span>
             </div>
         </header>
 
         <!-- Key Privacy Highlights -->
         <section class="highlights-grid" aria-label="Privacy Highlights">
             <div class="highlight-box">
+                <div class="highlight-tag">Zero Data Collection</div>
+                <div class="highlight-title">No Personal or Location Data</div>
+                <div class="highlight-desc">We do not collect, store, or share any personal information, location data, or contacts.</div>
+            </div>
+            <div class="highlight-box">
                 <div class="highlight-tag">Core Processing</div>
-                <div class="highlight-title">On-Device QR Engine</div>
-                <div class="highlight-desc">All QR generation and optical scanning execute locally in device memory.</div>
+                <div class="highlight-title">100% On-Device QR Engine</div>
+                <div class="highlight-desc">All QR generation and optical scanning execute locally in your device memory (RAM).</div>
             </div>
             <div class="highlight-box">
                 <div class="highlight-tag">Media &amp; Storage</div>
@@ -572,20 +577,15 @@
                 <div class="highlight-title">User-Confirmed Intents</div>
                 <div class="highlight-desc">Displays full details and asks confirmation before opening Web, Call, or UPI apps.</div>
             </div>
-            <div class="highlight-box">
-                <div class="highlight-tag">Monetization</div>
-                <div class="highlight-title">Banner &amp; Interstitial Ads</div>
-                <div class="highlight-desc">Displays standard Banner and Interstitial advertisements to keep the app free.</div>
-            </div>
         </section>
 
         <!-- Sticky Section Navigation -->
         <nav class="quick-nav" aria-label="Policy Sections">
             <a class="nav-chip" href="#scope">1. Overview</a>
-            <a class="nav-chip" href="#data">2. QR Data Handling</a>
+            <a class="nav-chip" href="#data">2. No Data Collection</a>
             <a class="nav-chip" href="#permissions">3. Permissions &amp; Storage</a>
             <a class="nav-chip" href="#actions">4. Web, Phone &amp; UPI</a>
-            <a class="nav-chip" href="#ads">5. Advertising</a>
+            <a class="nav-chip" href="#ads">5. In-App Display Ads</a>
             <a class="nav-chip" href="#retention">6. Data Retention</a>
             <a class="nav-chip" href="#children">7. Children's Privacy</a>
             <a class="nav-chip" href="#contact">8. Contact Us</a>
@@ -598,7 +598,7 @@
                 <h2>Overview and Scope</h2>
             </div>
             <p>
-                <strong>SK Studio</strong> ("we", "our", or "us") built the <strong>QR Maker Lite</strong> mobile application (package identifier <code>com.qrmakerlite</code>) as an ad-supported utility application for Android. This Privacy Policy describes how QR Maker Lite accesses device permissions, processes QR code data, interacts with external applications, and serves advertisements.
+                <strong>SK Studio</strong> ("we", "our", or "us") built the <strong>QR Maker Lite</strong> mobile application (package identifier <code>com.qrmakerlite</code>) as a free utility application for Android. We are committed to protecting your privacy: <strong>QR Maker Lite does not collect, store, track, or share any personal data, location data, or user-generated content.</strong>
             </p>
         </section>
 
@@ -606,15 +606,16 @@
         <section id="data" class="policy-section">
             <div class="section-header">
                 <span class="section-num">02</span>
-                <h2>QR Code Generation and Scanning Data</h2>
+                <h2>Zero Personal or Location Data Collection</h2>
             </div>
             <p>
-                <strong>We do not collect, store, or transmit the contents of the QR codes you generate or scan to our servers.</strong>
+                <strong>We do not collect, transmit, or store any personal information, location coordinates, IP location, contacts, or QR code contents on any server.</strong>
             </p>
             <ul>
-                <li><strong>QR Code Generation (Text, Website URLs, Wi-Fi Networks):</strong> Any plain text, website link, or Wi-Fi network configuration (SSID, security type, and password) you enter is encoded into a standard ISO/IEC 18004 QR code bitmap strictly within your device's volatile memory (RAM). Passwords and user inputs are never logged or uploaded.</li>
-                <li><strong>Live Camera QR Scanning &amp; Auto-Tracking:</strong> When you scan a QR code using your device camera, the optical decoder detects and tracks the QR code position locally on your screen. Decoded content is displayed only to you in real time.</li>
-                <li><strong>No User Accounts Required:</strong> QR Maker Lite does not require account registration, sign-in, or personal profile creation.</li>
+                <li><strong>No Location Tracking:</strong> QR Maker Lite never requests or accesses GPS, Wi-Fi, or network location permissions, and does not track your physical or approximate location.</li>
+                <li><strong>On-Device QR Code Generation (Text, Website URLs, Wi-Fi Networks):</strong> Any plain text, website link, or Wi-Fi network configuration (SSID, security type, and password) you enter is encoded into a standard ISO/IEC 18004 QR code bitmap strictly within your device's volatile memory (RAM). Your inputs are never logged or uploaded.</li>
+                <li><strong>On-Device Live Camera QR Scanning:</strong> When you scan a QR code using your device camera, the optical decoder detects and decodes the QR code locally on your screen. Decoded content is displayed only to you in real time.</li>
+                <li><strong>No User Accounts Required:</strong> QR Maker Lite does not require account registration, login, email sign-up, or profile creation.</li>
             </ul>
         </section>
 
@@ -625,7 +626,7 @@
                 <h2>Device Permissions, Gallery Saving, and Picture Picker</h2>
             </div>
             <p>
-                QR Maker Lite requests only the permissions and system interfaces necessary to deliver its core features:
+                QR Maker Lite requests only the minimal device capabilities necessary to provide QR generation and scanning features locally on your phone:
             </p>
             <table class="perm-table">
                 <thead>
@@ -637,23 +638,23 @@
                 <tbody>
                     <tr>
                         <td><strong>Camera Permission</strong><br>(<code>android.permission.CAMERA</code>)</td>
-                        <td>Requested at runtime when you open the <strong>Scan QR</strong> screen. Camera frames are analyzed in real time on your device solely to locate and decode QR codes. No photographs or videos are recorded, stored, or transmitted.</td>
+                        <td>Requested at runtime only when you open the <strong>Scan QR</strong> screen. Camera frames are analyzed in real time on your device solely to locate and decode QR codes. No photographs or videos are recorded, stored, or transmitted.</td>
                     </tr>
                     <tr>
                         <td><strong>Save to Gallery</strong><br>(Android <code>MediaStore</code>)</td>
-                        <td>When you tap <strong>Save to Gallery</strong>, the generated QR code PNG is saved directly to your device's photo gallery (<code>Pictures/QRMakerLite</code>) using Android's scoped <code>MediaStore</code> API without requiring broad access to your existing photos.</td>
+                        <td>When you tap <strong>Save to Gallery</strong>, the generated QR code PNG is saved directly to your device's photo gallery (<code>Pictures/QRMakerLite</code>) using Android's scoped <code>MediaStore</code> API without accessing your existing photos.</td>
                     </tr>
                     <tr>
                         <td><strong>Save to Files</strong><br>(Storage Access Framework)</td>
-                        <td>When you tap <strong>Save to Files</strong>, Android's system document saver (<code>ACTION_CREATE_DOCUMENT</code>) allows you to choose a specific folder and filename for your exported PNG image.</td>
+                        <td>When you tap <strong>Save to Files</strong>, Android's system document saver (<code>ACTION_CREATE_DOCUMENT</code>) allows you to choose a folder and filename on your device for your exported PNG image.</td>
                     </tr>
                     <tr>
                         <td><strong>Pick QR Picture</strong><br>(Android Photo Picker)</td>
-                        <td>When you tap <strong>Pick QR Picture</strong> on the scanner screen, the system Photo Picker opens so you can select a saved QR code image from your phone to decode. The app accesses only the single image you select.</td>
+                        <td>When you tap <strong>Pick QR Picture</strong> on the scanner screen, the system Photo Picker opens so you can select a single QR code image from your phone to decode locally.</td>
                     </tr>
                     <tr>
                         <td><strong>Share QR</strong><br>(Native Android Sharesheet)</td>
-                        <td>When you tap <strong>Share QR</strong>, the generated PNG is written to a temporary app-private cache file and shared via Android's native Sharesheet with temporary read-only permission.</td>
+                        <td>When you tap <strong>Share QR</strong>, the generated PNG is written to a temporary app-private cache file and shared via Android's native Sharesheet.</td>
                     </tr>
                 </tbody>
             </table>
@@ -666,12 +667,12 @@
                 <h2>Website Links, Phone Calls, and UPI Payment Actions</h2>
             </div>
             <p>
-                When a scanned QR code contains an actionable link, phone number, or payment address, QR Maker Lite displays the decoded information in a preview pop-up first and asks for your confirmation before launching any external application:
+                When a scanned QR code contains a website link, phone number, or UPI payment address, QR Maker Lite displays the decoded information in a preview pop-up first and asks for your confirmation before opening any external application:
             </p>
             <ul>
                 <li><strong>Website Links (<code>http://</code> and <code>https://</code>):</strong> Displays the complete URL and destination domain host first. Your external web browser is opened only when you tap <strong>Open in Browser</strong>.</li>
-                <li><strong>Phone Numbers (<code>tel:</code>):</strong> Displays the phone number and asks if you want to place a call. Tapping <strong>Call Number</strong> opens your phone's default dialer application with the number pre-filled so you can initiate the call.</li>
-                <li><strong>UPI Payment Codes (<code>upi://pay</code>):</strong> Displays the recipient UPI ID, payee name, and amount (if specified) and asks if you want to proceed. Tapping <strong>Pay with UPI App</strong> hands the payment request to your chosen installed UPI application. QR Maker Lite never accesses, processes, or stores banking details or UPI PINs.</li>
+                <li><strong>Phone Numbers (<code>tel:</code>):</strong> Displays the phone number and asks if you want to place a call. Tapping <strong>Call Number</strong> opens your phone's default dialer with the number pre-filled.</li>
+                <li><strong>UPI Payment Codes (<code>upi://pay</code>):</strong> Displays the recipient UPI ID, payee name, and amount (if specified) and asks if you want to proceed. Tapping <strong>Pay with UPI App</strong> opens your chosen UPI app. QR Maker Lite never accesses, processes, or stores banking details or UPI PINs.</li>
             </ul>
         </section>
 
@@ -679,16 +680,15 @@
         <section id="ads" class="policy-section">
             <div class="section-header">
                 <span class="section-num">05</span>
-                <h2>Advertising and How Ads Work in the Application</h2>
+                <h2>In-App Display Advertisements</h2>
             </div>
             <p>
-                To keep <strong>QR Maker Lite</strong> free for all users, the application displays advertisements in the following placements:
+                To keep <strong>QR Maker Lite</strong> free for all users, the application displays non-personalized advertisements in two placements:
             </p>
             <ul>
-                <li><strong>Bottom Banner Advertisement:</strong> A standard banner advertisement displayed at the bottom edge of the application interface.</li>
-                <li><strong>Interstitial Advertisement:</strong> A full-screen advertisement displayed when the application opens and at periodic intervals during active usage, which can be closed at any time using the close button.</li>
-                <li><strong>How Advertising Data Is Handled:</strong> Advertising partners (such as Google AdMob) may use your device's Advertising ID, coarse IP-based location, device model, and ad interaction metrics to deliver relevant advertisements, limit how often the same ad is shown (frequency capping), measure ad performance, and detect invalid traffic or fraud in accordance with <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google's Advertising Privacy Policy</a>.</li>
-                <li><strong>Managing Your Ad Preferences:</strong> You can opt out of personalized advertising, reset your Advertising ID, or delete your Advertising ID at any time in your device's system settings under <strong>Settings &gt; Google &gt; Ads</strong> (or <strong>Settings &gt; Privacy &gt; Ads</strong>).</li>
+                <li><strong>Bottom Banner Advertisement:</strong> A banner advertisement displayed at the bottom edge of the application screen.</li>
+                <li><strong>Interstitial Advertisement:</strong> A full-screen advertisement displayed when the application opens and at periodic intervals during active usage, which can be closed at any time.</li>
+                <li><strong>No Personal Data or Location Collection for Ads:</strong> QR Maker Lite requests ads in non-personalized mode and disables Advertising ID and location tracking permissions so that no personal identity, user profile, or location data is collected from your device.</li>
             </ul>
         </section>
 
@@ -699,7 +699,7 @@
                 <h2>Data Security, Retention, and Deletion</h2>
             </div>
             <p>
-                QR Maker Lite does not maintain external databases of user-generated QR codes or scan histories. All QR inputs and decoded results remain in temporary device memory only while displayed on screen and are cleared immediately when you tap <strong>Clear</strong>, tap <strong>Scan Again</strong>, or exit the application. Any QR code PNG images you save using <strong>Save to Gallery</strong> or <strong>Save to Files</strong> are stored locally on your device and can be deleted by you at any time.
+                Because QR Maker Lite does not collect or store any personal data on external servers, there is no server-side user data retained by SK Studio. All QR inputs and decoded scan results exist only in temporary device memory (RAM) while displayed on screen and are cleared immediately when you tap <strong>Clear</strong>, tap <strong>Scan Again</strong>, or close the application. Any QR code PNG images you save using <strong>Save to Gallery</strong> or <strong>Save to Files</strong> remain strictly on your device and can be deleted by you at any time.
             </p>
         </section>
 
@@ -710,7 +710,7 @@
                 <h2>Children's Privacy and Policy Updates</h2>
             </div>
             <p>
-                QR Maker Lite is a general-audience utility application and is not directed to children under the age of 13. We do not knowingly collect personal information from children. We may update this Privacy Policy periodically to reflect application improvements or regulatory requirements; any revisions will be posted on this page with an updated Effective Date.
+                QR Maker Lite does not collect personal information from anyone, including children under the age of 13. We may update this Privacy Policy from time to time to reflect application improvements; any updates will be published on this page with an updated Effective Date.
             </p>
         </section>
 
@@ -721,7 +721,7 @@
                 <h2>Contact Us</h2>
             </div>
             <p>
-                If you have any questions, feedback, or privacy inquiries regarding <strong>QR Maker Lite</strong>, please contact <strong>SK Studio</strong>:
+                If you have any questions or feedback regarding <strong>QR Maker Lite</strong> or this Privacy Policy, please contact <strong>SK Studio</strong>:
             </p>
             <div class="contact-card">
                 <div>
