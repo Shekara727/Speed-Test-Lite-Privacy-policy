@@ -615,7 +615,7 @@
                 <li><strong>No Location Permission or Tracking:</strong> QR Maker Lite never requests or accesses GPS, Wi-Fi, or cellular location permissions. We never ask for your location.</li>
                 <li><strong>100% On-Device QR Code Generation (Text, Website Links, Wi-Fi):</strong> Any plain text, website URL, or Wi-Fi network configuration (SSID, security type, and password) you enter is encoded into an ISO/IEC 18004 QR code bitmap strictly inside your phone's volatile memory (RAM).</li>
                 <li><strong>100% On-Device Camera &amp; Picture Scanning:</strong> Live camera frames and QR pictures selected via the Photo Picker are decoded locally on your phone with animated reticle tracking.</li>
-                <li><strong>No Login or User Account:</strong> The application never asks for your name, email address, phone number, or account registration.</li>
+                <li><strong>No Login or User Account &amp; Ephemeral Phone Number Handling:</strong> The application never requires account registration. Any optional phone number (<code>tel:</code>) you enter to generate a QR code or scan from a QR code is processed 100% ephemerally in device RAM in real time solely for app functionality and is never stored on any server or shared with third parties.</li>
             </ul>
         </section>
 
@@ -671,7 +671,7 @@
             </p>
             <ul>
                 <li><strong>Website Links (<code>http://</code> / <code>https://</code>):</strong> Shows the full link and destination domain host first, and asks if you want to open it in your browser (<strong>Open in Browser</strong>).</li>
-                <li><strong>Phone Numbers (<code>tel:</code>):</strong> Shows the phone number first and asks if you want to call it (<strong>Call Number</strong> opens your phone dialer).</li>
+                <li><strong>Phone Numbers (<code>tel:</code> — Ephemeral &amp; Optional):</strong> Processed ephemerally in memory only when you optionally generate or scan a phone QR code; shows the phone number first and asks if you want to call it (<strong>Call Number</strong> opens your phone dialer, and the number is never shared or stored).</li>
                 <li><strong>UPI Payment QR Codes (<code>upi://pay</code>):</strong> Shows the payee UPI ID, name, and amount first, and asks if you want to make a payment (<strong>Pay with UPI App</strong> hands off to your installed UPI app). QR Maker Lite never accesses banking credentials or UPI PINs.</li>
             </ul>
         </section>
