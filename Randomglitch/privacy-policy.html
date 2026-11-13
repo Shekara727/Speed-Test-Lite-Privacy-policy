@@ -1,1 +1,468 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Random Glitch</title>
+  <style>
+    :root {
+      --bg-top: #e8f6ff;
+      --bg-bottom: #d8efff;
+      --card-bg: rgba(255, 255, 255, 0.84);
+      --glacier-border: #38bdf8;
+      --glacier-deep: #014f86;
+      --glacier-mid: #0284c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --glitch-cyan: #00e5ff;
+      --glitch-pink: #ff0055;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(155deg, var(--bg-top) 0%, #ffffff 48%, var(--bg-bottom) 100%);
+      min-height: 100vh;
+      line-height: 1.68;
+      padding: 36px 16px 64px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient floating glacier orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbDrift 11s ease-in-out infinite alternate;
+    }
+    .bg-orb.one {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #7dd3fc, transparent 70%);
+      top: -80px;
+      left: -60px;
+    }
+    .bg-orb.two {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, #a5f3fc, transparent 70%);
+      bottom: -90px;
+      right: -70px;
+      animation-delay: -4s;
+    }
+
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glacier-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(56, 189, 248, 0.6);
+      border-radius: 22px;
+      box-shadow: 0 24px 55px rgba(2, 132, 199, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      padding: 38px 34px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(22px) scale(0.985);
+      animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Animated top glacier + glitch gradient bar */
+    .glacier-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--glitch-cyan), var(--glacier-mid), var(--glitch-pink), var(--glacier-border), var(--glitch-cyan));
+      background-size: 250% 100%;
+      animation: barFlow 5s linear infinite;
+    }
+
+    /* Diagonal crystalline ice sheen sweep on open */
+    .glacier-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.55) 50%, transparent 80%);
+      pointer-events: none;
+      animation: iceSheen 1.4s 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* Mini floating translucent ice cube emblem */
+    .ice-cube {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(240, 249, 255, 0.95), rgba(125, 211, 252, 0.65) 55%, rgba(14, 165, 233, 0.55));
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 24px rgba(2, 132, 199, 0.22), inset 0 2px 6px rgba(255, 255, 255, 0.95);
+      position: relative;
+      overflow: hidden;
+      animation: iceFloat 4.2s ease-in-out infinite;
+    }
+    .ice-cube::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.55), transparent 65%);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--glacier-deep);
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      border: 1px solid #7dd3fc;
+      border-radius: 999px;
+      padding: 5px 14px;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.55s 0.15s ease-out forwards;
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 3.6vw, 2.35rem);
+      font-weight: 800;
+      color: var(--glacier-deep);
+      letter-spacing: -0.02em;
+      text-shadow: -1.5px 0 rgba(255, 0, 85, 0.3), 1.5px 0 rgba(0, 229, 255, 0.45);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: titleGlitchIn 0.8s 0.22s ease-out forwards, ambientGlitch 6s 2s infinite;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(125, 211, 252, 0.45);
+      opacity: 0;
+      animation: fadeUp 0.55s 0.35s ease-out forwards;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .meta-item {
+      background: linear-gradient(145deg, #f8fcff, #eef8ff);
+      border: 1px solid rgba(56, 189, 248, 0.42);
+      border-radius: 13px;
+      padding: 13px 15px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      opacity: 0;
+      animation: fadeUp 0.55s ease-out forwards;
+    }
+    .meta-item:nth-child(1) { animation-delay: 0.4s; }
+    .meta-item:nth-child(2) { animation-delay: 0.48s; }
+    .meta-item:nth-child(3) { animation-delay: 0.56s; }
+    .meta-item:nth-child(4) { animation-delay: 0.64s; }
+
+    .meta-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--glacier-mid);
+      box-shadow: 0 10px 22px rgba(2, 132, 199, 0.12);
+    }
+
+    .meta-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--glacier-mid);
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--glacier-deep);
+      word-break: break-word;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f0f9ff 0%, #dff2fe 100%);
+      border: 1px solid #7dd3fc;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 18px 0 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.72s ease-out forwards;
+    }
+
+    .highlight-box strong {
+      color: var(--glacier-deep);
+    }
+
+    .policy-section {
+      opacity: 0;
+      animation: fadeUp 0.6s 0.82s ease-out forwards;
+    }
+
+    h2 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      color: var(--glacier-deep);
+      margin: 26px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--glacier-mid);
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: var(--text-main);
+      font-size: 0.97rem;
+    }
+
+    ul {
+      margin: 8px 0 16px 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 0.96rem;
+    }
+
+    code {
+      background: #eaf6ff;
+      color: var(--glacier-deep);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.88em;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    a {
+      color: var(--glacier-mid);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-pill {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .contact-pill:hover {
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(2, 132, 199, 0.32);
+    }
+
+    footer {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(125, 211, 252, 0.45);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @keyframes cardReveal {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes barFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 250% 50%; }
+    }
+    @keyframes iceSheen {
+      0% { left: -120%; }
+      100% { left: 160%; }
+    }
+    @keyframes iceFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(3deg); }
+    }
+    @keyframes orbDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(28px, 22px) scale(1.08); }
+    }
+    @keyframes titleGlitchIn {
+      0% { opacity: 0; transform: translateX(-6px); text-shadow: -4px 0 #ff0055, 4px 0 #00e5ff; }
+      35% { opacity: 1; transform: translateX(3px); text-shadow: 3px 0 #ff0055, -3px 0 #00e5ff; }
+      65% { transform: translateX(-2px); text-shadow: -2px 0 #ff0055, 2px 0 #00e5ff; }
+      100% { opacity: 1; transform: translateX(0); text-shadow: -1.5px 0 rgba(255, 0, 85, 0.3), 1.5px 0 rgba(0, 229, 255, 0.45); }
+    }
+    @keyframes ambientGlitch {
+      0%, 92%, 100% { transform: translateX(0); text-shadow: -1.5px 0 rgba(255, 0, 85, 0.3), 1.5px 0 rgba(0, 229, 255, 0.45); }
+      94% { transform: translateX(-2px); text-shadow: 3px 0 rgba(255, 0, 85, 0.65), -3px 0 rgba(0, 229, 255, 0.75); }
+      96% { transform: translateX(2px); text-shadow: -3px 0 rgba(255, 0, 85, 0.65), 3px 0 rgba(0, 229, 255, 0.75); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .glacier-card { padding: 26px 18px; }
+      .ice-cube { width: 44px; height: 44px; border-radius: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb one" aria-hidden="true"></div>
+  <div class="bg-orb two" aria-hidden="true"></div>
+
+  <main class="container">
+    <article class="glacier-card">
+      <div class="header-row">
+        <div>
+          <span class="badge">Ice Cube / Glacier Edition • Offline Privacy Policy</span>
+          <h1>Privacy Policy — Random Glitch</h1>
+        </div>
+        <div class="ice-cube" aria-hidden="true"></div>
+      </div>
+
+      <p class="subtitle">
+        <em>"Tap Once. Enter the Glitch."</em> — Official privacy disclosure for the Random Glitch Android application.
+      </p>
+
+      <section class="meta-grid" aria-label="Application Details">
+        <div class="meta-item">
+          <span class="meta-label">Application Name</span>
+          <span class="meta-value">Random Glitch</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Package Name</span>
+          <span class="meta-value">com.randomglitch.prank</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Effective Date</span>
+          <span class="meta-value">November 13, 2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Contact Email</span>
+          <span class="meta-value"><a href="mailto:shekara727@gmail.com">shekara727@gmail.com</a></span>
+        </div>
+      </section>
+
+      <div class="highlight-box">
+        <strong>Zero Data Collection Guarantee:</strong> Random Glitch is a completely offline entertainment prank application. We do <strong>not</strong> collect, store, track, share, or transmit any personal or device data.
+      </div>
+
+      <div class="policy-section">
+        <h2>1. Information We Do Not Collect</h2>
+        <p>
+          Random Glitch operates locally on your Android device without user accounts, login screens, cloud databases, or external servers. We do not collect or process:
+        </p>
+        <ul>
+          <li>Personal identifiers (name, email address, phone number, or account IDs).</li>
+          <li>Device identifiers, advertising IDs (AAID), IP addresses, or telemetry.</li>
+          <li>Location data, contacts, photos, files, camera feeds, or microphone audio.</li>
+          <li>Usage analytics, crash reports, behavioral tracking, or third-party ad profiles.</li>
+        </ul>
+
+        <h2>2. Permissions &amp; Device Access</h2>
+        <p>
+          Random Glitch does <strong>not</strong> request <code>INTERNET</code>, <code>CAMERA</code>, <code>RECORD_AUDIO</code>, <code>ACCESS_FINE_LOCATION</code>, <code>READ_CONTACTS</code>, storage, or overlay permissions.
+        </p>
+        <p>
+          The only manifest permission declared is <code>com.android.vending.CHECK_LICENSE</code>, which is used solely to communicate locally with the Google Play Store app (<code>com.android.vending</code>) on your device to verify that the paid app was legitimately obtained from Google Play.
+        </p>
+
+        <h2>3. Google Play Licensing &amp; Local Preferences</h2>
+        <p>
+          When you open Random Glitch, the app may ask the Google Play Store client on your device to verify your purchase license. That verification is processed by Google Play Services under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
+        </p>
+        <p>
+          Once verified, Random Glitch stores a single local boolean flag inside private on-device preferences (<code>MODE_PRIVATE</code>) so the app remains fully functional offline without re-checking on every launch. No personal data is stored in this preference file, and uninstalling the app removes it permanently.
+        </p>
+
+        <h2>4. Audio, Visual Effects &amp; User Safety</h2>
+        <p>
+          All 10 digital glitch visual effects are generated programmatically in real time using Android Canvas, and short prank audio clips are bundled locally inside the app. Random Glitch:
+        </p>
+        <ul>
+          <li>Does not simulate fake system crashes, virus warnings, security alerts, or OS dialogs.</li>
+          <li>Does not disable or lock your device's hardware volume controls, Power button, or system navigation.</li>
+          <li>Pauses visual animations automatically when moved to the background and exits normally via the Close button or Android Back navigation.</li>
+        </ul>
+
+        <h2>5. Advertisements, Analytics &amp; Third-Party SDKs</h2>
+        <p>
+          Random Glitch contains <strong>zero advertisements</strong>, <strong>zero analytics SDKs</strong>, and <strong>zero third-party tracking libraries</strong>.
+        </p>
+
+        <h2>6. Children's Privacy</h2>
+        <p>
+          Because Random Glitch collects no personal data of any kind from any user, it does not knowingly collect personal information from children under 13 (or the applicable age of digital consent in your jurisdiction).
+        </p>
+
+        <h2>7. Changes to This Privacy Policy</h2>
+        <p>
+          If future updates introduce any change to how Random Glitch operates or handles permissions, this Privacy Policy will be updated with a revised effective date prior to release.
+        </p>
+
+        <h2>8. Contact Us</h2>
+        <p>
+          If you have any questions, feedback, or privacy inquiries regarding Random Glitch (<code>com.randomglitch.prank</code>), please contact the developer:
+        </p>
+        <a class="contact-pill" href="mailto:shekara727@gmail.com">shekara727@gmail.com</a>
+
+        <footer>
+          &copy; 2026 Random Glitch (com.randomglitch.prank). All rights reserved.
+        </footer>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
